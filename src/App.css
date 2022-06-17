@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+HTML,
+body,
+#root {
+    height: 100%;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@font-face {
+    font-family: "Futura Heavy";
+    src: local('Futura Heavy'), url("./assets/Futura-Heavy.woff") format('woff');
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+.logo-text {
+    font-family: 'Futura Heavy' !important;
+    font-size: 200%;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.konvajs-content>canvas {
+    border-radius: 15px;
 }
