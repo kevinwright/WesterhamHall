@@ -28,7 +28,7 @@ function Facilities(): ReactElement {
     const stage = stageRef.current;
     if (stage) {
       stage.findOne('#topimage').hide();
-      stage.find('.room').map(
+      stage.find('.room').forEach(
         (node) => {
           if(node.id() === room.id) {
             console.log(`matched ${room.id} at ${node.opacity()}`);

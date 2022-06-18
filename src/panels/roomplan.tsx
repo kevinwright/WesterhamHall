@@ -6,8 +6,8 @@ import useImage from "use-image";
 
 import { rooms, RoomProps } from "../rooms"
 
-const sceneHeight = 2000;
-const sceneWidth = 2000;
+const sceneHeight = 1000;
+const sceneWidth = 1000;
 
 const BaseImage = () => {
   const [image] = useImage('/orthoplan/baseline.png');
@@ -145,8 +145,8 @@ function Roomplan(props: RoomplanProps): ReactElement {
           />
         )}
         <TopImage />
-        <Rect fill="white" opacity={0.25} cornerRadius={20} x={64} y={64} width={800} height={128} ref={rectRef} />
-        <Text x={80} y={80} fontSize={96} fill="white" text="Interactive Image" ref={textRef} />
+        <Rect fill="white" opacity={0.25} cornerRadius={10} x={32} y={32} width={400} height={64} ref={rectRef} />
+        <Text x={40} y={40} fontSize={48} fill="white" text="Interactive Image" ref={textRef} />
       </Layer>
     </Stage>       
   );
