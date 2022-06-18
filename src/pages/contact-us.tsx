@@ -4,9 +4,7 @@ import { ReactElement } from "react";
 
 function ContactUs(): ReactElement {
   return (
-    <div className="App">
-      CONTACT US
-    </div>
+    <p>CONTACT US</p>
   )
 };
 

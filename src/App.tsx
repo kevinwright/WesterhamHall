@@ -1,6 +1,7 @@
 import AppThemeProvider from './AppThemeProvider';
 import NavBar from './panels/navbar'
 import { Outlet } from "react-router-dom";
+import { Container } from "@mui/material";
 
 import './App.css';
 
@@ -9,7 +10,9 @@ function App() {
     <AppThemeProvider>
       <>
         <NavBar />
-        <Outlet />
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Outlet />
+        </Container>
       </>
     </AppThemeProvider>
   );

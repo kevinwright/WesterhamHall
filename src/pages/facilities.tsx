@@ -54,25 +54,6 @@ function Facilities(): ReactElement {
     <Box className="App">
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3} alignItems="stretch">
-          <Grid item xs={12}>
-            <h1>FACILITIES</h1>
-          </Grid>  
-          <Grid item xs={12} md={6} lg={6}>
-            <Box
-              sx={{
-                p: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-              }}
-              id='orthoplan-parent'
-            >  
-              <Roomplan
-                stageRef={stageRef}
-                onRoomSelected={onRoomSelected}
-              />
-            </Box>
-          </Grid>
           <Grid item xs={12} md={6} lg={6}>
             <Paper
               sx={{
@@ -81,7 +62,9 @@ function Facilities(): ReactElement {
                 flexDirection: 'column',
                 height: '100%',
               }}
+              id='roomlist-parent'
             >  
+              <h1>FACILITIES</h1>
               Click a region of the hall plan to learn more, or select one of the following:
               <RoomSelectList
                 onRoomMouseEnter={onRoomListMouseOver}
@@ -90,6 +73,22 @@ function Facilities(): ReactElement {
                 onRoomClick={onRoomSelected}
               />
             </Paper>  
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
+            <Box
+              sx={{
+                p: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+              }}
+              id='roomplan-parent'
+            >  
+              <Roomplan
+                stageRef={stageRef}
+                onRoomSelected={onRoomSelected}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Container>    

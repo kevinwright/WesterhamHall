@@ -101,7 +101,8 @@ function Roomplan(props: RoomplanProps): ReactElement {
   const rectRef = useRef<Konva.Rect | null>(null);
 
   const onStageMouseEnter = (evt: KonvaEventObject<MouseEvent>) => {
-    stageRef.current?.findOne('#topimage').hide();
+    const topimage = stageRef.current?.findOne('#topimage')
+    if(topimage) { topimage.hide(); }
     rectRef.current?.hide()
     textRef.current?.show()
   };
@@ -142,20 +143,22 @@ function Roomplan(props: RoomplanProps): ReactElement {
 
   useEffect(() => {
     function handleResize() {
-      var container = document.querySelector('#orthoplan-parent') as HTMLElement;
+      var container = document.querySelector('#roomplan-parent') as HTMLElement;
 
-      // now we need to fit stage into parent container
-      var containerWidth = container.offsetWidth;
+      if(container) {
+        // now we need to fit stage into parent container
+        var containerWidth = container.offsetWidth;
 
-      // but we also make the full scene visible
-      // so we need to scale all objects on canvas
-      var scale = containerWidth / sceneWidth;
+        // but we also make the full scene visible
+        // so we need to scale all objects on canvas
+        var scale = containerWidth / sceneWidth;
 
-      const stage = stageRef.current!;
+        const stage = stageRef.current!;
 
-      stage.width(sceneWidth * scale);
-      stage.height(sceneHeight * scale);
-      stage.scale({ x: scale, y: scale });
+        stage.width(sceneWidth * scale);
+        stage.height(sceneHeight * scale);
+        stage.scale({ x: scale, y: scale });
+      }
     }
     window.addEventListener('resize', handleResize);
     handleResize();
