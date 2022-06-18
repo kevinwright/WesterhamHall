@@ -11,7 +11,7 @@ const sceneWidth = 1000;
 
 const BaseImage = () => {
   const [image] = useImage('/orthoplan/baseline.png');
-  return <Image key='baseimage' image={image} />;
+  return <Image key='baseimage' preventDefault={false} image={image} />;
 };
 
 interface RoomLayerProps {
@@ -26,15 +26,8 @@ function RoomLayer(props: RoomLayerProps): ReactElement {
   const [image] = useImage(`/orthoplan/layer-${room.id}.png`);
   const imgRef = useRef<Konva.Image | null>(null);
 
-  const onMouseEnter = (evt: KonvaEventObject<MouseEvent>) => {
-    evt.target.opacity(1.0);
-    onRoomMouseEnter(room);
-  };
-  
-  const onMouseLeave = (evt: KonvaEventObject<MouseEvent>) => {
-    evt.target.opacity(0.001);
-    onRoomMouseLeave(room);
-  };
+  const onMouseEnter = (evt: KonvaEventObject<MouseEvent>) => onRoomMouseEnter(room);
+  const onMouseLeave = (evt: KonvaEventObject<MouseEvent>) => onRoomMouseLeave(room);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -52,20 +45,47 @@ function RoomLayer(props: RoomLayerProps): ReactElement {
     image={image}
     opacity={0.01}
     ref={imgRef}
+    onTap={onMouseEnter}
+    onDoubleTap={() => onRoomClick(room)}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-    onClick={(evt) => onRoomClick(room)}
+    onClick={() => onRoomClick(room)}
+    preventDefault={false}
   />;
 }
 
 
-function TopImage(): ReactElement {
+interface TopImageProps {
+  stageRef: MutableRefObject<Konva.Stage | null>;
+}
+
+function TopImage(props: TopImageProps): ReactElement {
   const [image] = useImage('/orthoplan/all-on.png');
+  const { stageRef } = props;
+
+  const onTap = () => {
+    const stage = stageRef.current;
+    if (stage) {
+      stage.findOne('#topimage').hide();
+      stage.findOne('#textrect').hide();
+      (stage.findOne('#roomtext') as Konva.Text).text("");
+
+      stage.find('.room').forEach(
+        (node) => {
+          node.show();
+          node.opacity(0.001);
+        }
+      );
+    }
+  };
+
   return <Image
     key='topimage'
     name='topimage'
     id='topimage'
     image={image}
+    preventDefault={false}
+    onTap={onTap}
   />;  
 };
 
@@ -94,6 +114,22 @@ function Roomplan(props: RoomplanProps): ReactElement {
 
   const onRoomMouseEnter = (room: RoomProps) => {
     textRef.current?.text(room.name)
+    const stage = stageRef.current;
+    if (stage) {
+      rectRef.current?.hide();
+      stage.findOne('#topimage').hide();
+
+      stage.find('.room').forEach(
+        (node) => {
+          if(node.id() === room.id) {
+            node.show();
+            node.opacity(1.0);
+          } else {
+            node.opacity(0.001);
+          }
+        }
+      );
+    }
   };
   
   const onRoomMouseLeave = (room: RoomProps) => {
@@ -144,9 +180,9 @@ function Roomplan(props: RoomplanProps): ReactElement {
             onRoomMouseLeave={onRoomMouseLeave}
           />
         )}
-        <TopImage />
-        <Rect fill="white" opacity={0.25} cornerRadius={10} x={32} y={32} width={400} height={64} ref={rectRef} />
-        <Text x={40} y={40} fontSize={48} fill="white" text="Interactive Image" ref={textRef} />
+        <TopImage stageRef={stageRef} />
+        <Rect id="textrect" fill="white" opacity={0.25} cornerRadius={10} x={32} y={32} width={400} height={64} ref={rectRef} />
+        <Text id="roomtext" x={40} y={40} fontSize={48} fill="white" text="Interactive Image" ref={textRef} />
       </Layer>
     </Stage>       
   );

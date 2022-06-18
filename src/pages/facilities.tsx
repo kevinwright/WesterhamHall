@@ -31,7 +31,6 @@ function Facilities(): ReactElement {
       stage.find('.room').forEach(
         (node) => {
           if(node.id() === room.id) {
-            console.log(`matched ${room.id} at ${node.opacity()}`);
             node.show();
             node.opacity(1.0);
           }
