@@ -246,6 +246,10 @@ export const rooms: RoomProps[] = [
       'westerham-hall-parking.jpeg'
     ],
     icon: <DirectionsCarIcon />,
-    features: [],
+    features: [
+      "Loading bays to the front and side of the hall",
+      "Adjacent to a Pay-and-Display car park run by Sevenoaks District Council but spaces cannot be reserved and we can offer no guarantee that spaces will be available",
+      "Extensive further parking is available in Westerham Town Car Park located on the A25 towards Sevenoaks approximately 300m distant, linked to Westerham Hall via a clearly signposted footpath",
+    ],
   }
 ];
