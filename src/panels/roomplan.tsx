@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 
 
 import { rooms, RoomProps } from "../rooms"
-import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 
 const sceneHeight = 1000;
 const sceneWidth = 1000;
@@ -48,8 +47,7 @@ function RoomLayer(props: RoomLayerProps): ReactElement {
     image={image}
     opacity={0.01}
     ref={imgRef}
-    onTap={onMouseEnter}
-    onDoubleTap={() => onRoomClick(room)}
+    onTap={() => onRoomClick(room)}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
     onClick={() => onRoomClick(room)}

@@ -93,7 +93,7 @@ const NavBar = () => {
               {pages.map(({title, path}) => (
                 <MenuItem key={title} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                      <NavLink style={{textDecoration: 'none'}} to={`${path}`}>
+                      <NavLink style={{textDecoration: 'none'}} to={path}>
                         {title}
                       </NavLink>
                     </Typography>
@@ -120,7 +120,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            WESTERHAM HALL
+            WESTERHAM<br />HALL
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(({title, path}) => (

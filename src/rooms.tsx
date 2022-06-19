@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
 
+import { SvgIconProps } from '@mui/material/SvgIcon';
+
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
@@ -40,7 +42,7 @@ export interface RoomProps {
   id: string,
   name: string,
   photos: string[],
-  icon: ReactElement,
+  icon: ReactElement<SvgIconProps>,
   includes?: string[],
   includedWith?: string[],
   rates?: RoomRates,
@@ -72,14 +74,16 @@ export const rooms: RoomProps[] = [
     icon: <MeetingRoomIcon />,
     rates: flatRate(20),
     features: [
-      'Sink with hot and cold water',
-      'Direct access to an enclosed terrace',
-      'A/V links to The Stage by special arrangement',
-      'Direct access to the back of the stage'
+      "Sink with hot and cold water",
+      "Direct access to an enclosed terrace",
+      "Dedicated side-entrance with doorbell",
+      "A/V links to The Stage by special arrangement",
+      "Direct access to the back of the stage",
+      "Two dedicated child-sized toilets and low-level sinks"
     ],
     suggestedUses: [
       "Supervised children's parties",
-      "Green Room for the stage"
+      "Green Room for the stage",
     ],
     outlinePoints: [
       703, 550,
@@ -99,7 +103,12 @@ export const rooms: RoomProps[] = [
     includedWith: ['mainhall'],
     dimensions: {width: 10, depth: 5, height: 4},
     features: [
-      'Projection Screen'
+      "Projection Screen",
+      "Raised with full curtaining",
+      "Access doors to the Rear Meeting Room / Green Room (that remain locked unless the Rear Meeting Room has also been hired)",
+      "Fixed on/off lighting",
+      "By special arrangement: full theatrical lighting (for which which an additional fee is payable)",
+      "Twice a year (April/May and then November/December), the Stage will be shut off for two weeks by the full height sound-proofed partition to facilitate the staging of amateur theatre. Hirers are always advised before they book if this is to be the case and a commensurate reduction in the hire charge is naturally offered",
     ],
     outlinePoints: [
       589, 462,
@@ -131,6 +140,7 @@ export const rooms: RoomProps[] = [
       "30 tables (1.5m x .75m) & 200 padded chairs",
       "Free access to half the kitchen",
       "Full height sound proof partitions that split the room ¼ – ¾ along its length",
+      "Includes usage of half the kitchen"
     ],
     suggestedUses: [
       "Clubs",
@@ -159,20 +169,20 @@ export const rooms: RoomProps[] = [
     icon: <KitchenIcon />,
     features: [
       "Plenty of work surfaces",
-      "2 x 90cm ovens with grill",
-      "2 x standard ovens with grill",
-      "3 x gas hobs with 15 rings",
-      "Large (16ft3) warming oven",
+      "2 × 90cm ovens with grill",
+      "2 × standard ovens with grill",
+      "3 × gas hobs with 15 rings",
+      "Large (16'3\") warming oven",
       "Microwave oven",
-      "1 x large fridge",
-      "1 x Foster’s commercial fridge (set to 2oC)",
+      "1 × large fridge",
+      "1 × Foster's commercial fridge (set to 2°C)",
       "(Wine, soft drinks etc. may be placed in a fridge to chill ahead of the hire period by special arrangement with the Hall Manager)",      
-      "1 x Foster’s commercial freezer (set to -18oC)",
-      "2 x Lincat water boilers (one each end)",
+      "1 × Foster's commercial freezer (set to -18°C)",
+      "2 × Lincat water boilers (one each end)",
       "4 sinks with constant hot water",
       "Automatic commercial dish-washer with a three minute cycle",
       "Hire of crockery and glasses by arrangement",
-      "Serving hatches to Main Hall and Front Meeting Room",
+      "Included when booking the Main Hall or Front Meeting Room, with serving hatches to these rooms",
     ],
     outlinePoints: [
       188, 428,
@@ -192,8 +202,9 @@ export const rooms: RoomProps[] = [
     icon: <MeetingRoomIcon />,
     capacity: {atTables: 40, seated: 60, standing: 100},
     features: [
-      "12 padded armchairs + additional chairs from the Main Hall",
-      "Tables & chairs as required"
+      "12 padded armchairs",
+      "Tables & chairs from the Main Hall as required",
+      "Includes usage of half the kitchen"
     ],
     suggestedUses: [
       "Clubs",
@@ -218,7 +229,12 @@ export const rooms: RoomProps[] = [
     rates: undefined,
     photos: [],
     icon: <AccessibilityIcon />,
-    features: [],
+    features: [
+      "All areas of Westerham Hall are accessible by wheelchair with the current exception of the Stage itself",
+      "The main doors have electronic opening that can be operated from a wheelchair",
+      "Dedicated Disabled Toilets",
+      "An induction loop is fitted in the Main Hall for use with supporting hearing aids"
+    ],
   },
   {
     id: 'exterior',
