@@ -32,8 +32,8 @@ export interface RoomDayRates {
 
 export interface RoomRates {
   regular: RoomDayRates,
-  friday: RoomDayRates | undefined,
-  saturday: RoomDayRates | undefined
+  friday: RoomDayRates,
+  saturday: RoomDayRates
 }
 
 export interface RoomProps {

@@ -3,6 +3,9 @@ import { KonvaEventObject } from "konva/lib/Node";
 import { ReactElement, useRef, useEffect, MutableRefObject } from "react";
 import { Stage, Image, Layer, Text, Rect } from 'react-konva';
 import useImage from "use-image";
+import useDimensions from "react-cool-dimensions";
+import Box from '@mui/material/Box';
+
 
 import { rooms, RoomProps } from "../rooms"
 
@@ -141,6 +144,18 @@ function Roomplan(props: RoomplanProps): ReactElement {
     onRoomSelected(room);
   };
 
+  // const { observe } = useDimensions({
+  //   onResize: ({ width, height }) => {
+  //     const scale = width / sceneWidth;
+  //     const stage = stageRef.current!;
+  //     if(stage) {
+  //       stage.width(sceneWidth * scale);
+  //       stage.height(sceneHeight * scale);
+  //       stage.scale({ x: scale, y: scale });
+  //     }
+  //   }
+  // });
+
   useEffect(() => {
     function handleResize() {
       var container = document.querySelector('#roomplan-parent') as HTMLElement;
@@ -165,29 +180,39 @@ function Roomplan(props: RoomplanProps): ReactElement {
   });
 
   return (
-    <Stage
-      width={sceneWidth}
-      height={sceneHeight}
-      onMouseEnter={onStageMouseEnter}
-      onMouseLeave={onStageMouseLeave}
-      ref={stageRef}
-    >
-      <Layer>
-        <BaseImage />
-        {rooms.map( (room) =>
-          <RoomLayer
-            key={`layer-${room.id}`}
-            room={room}
-            onRoomClick={onRoomClick}
-            onRoomMouseEnter={onRoomMouseEnter}
-            onRoomMouseLeave={onRoomMouseLeave}
-          />
-        )}
-        <TopImage stageRef={stageRef} />
-        <Rect id="textrect" fill="white" opacity={0.25} cornerRadius={10} x={32} y={32} width={400} height={64} ref={rectRef} />
-        <Text id="roomtext" x={40} y={40} fontSize={48} fill="white" text="Interactive Image" ref={textRef} />
-      </Layer>
-    </Stage>       
+    <Box
+      sx={{
+        p: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      }}
+      id='roomplan-parent'
+    >  
+      <Stage
+        width={sceneWidth}
+        height={sceneHeight}
+        onMouseEnter={onStageMouseEnter}
+        onMouseLeave={onStageMouseLeave}
+        ref={stageRef}
+      >
+        <Layer>
+          <BaseImage />
+          {rooms.map( (room) =>
+            <RoomLayer
+              key={`layer-${room.id}`}
+              room={room}
+              onRoomClick={onRoomClick}
+              onRoomMouseEnter={onRoomMouseEnter}
+              onRoomMouseLeave={onRoomMouseLeave}
+            />
+          )}
+          <TopImage stageRef={stageRef} />
+          <Rect id="textrect" fill="white" opacity={0.25} cornerRadius={10} x={32} y={32} width={400} height={64} ref={rectRef} />
+          <Text id="roomtext" x={40} y={40} fontSize={48} fill="white" text="Interactive Image" ref={textRef} />
+        </Layer>
+      </Stage>
+    </Box>  
   );
 };
 
