@@ -41,14 +41,15 @@ export interface RoomProps {
   name: string,
   photos: string[],
   icon: ReactElement,
-  includes: string[],
-  includedWith: string[],
-  rates: RoomRates | undefined,
-  capacity: RoomCapacity | undefined,
-  maxCapacity: RoomCapacity | undefined,
-  dimensions: RoomDimensions | undefined,
+  includes?: string[],
+  includedWith?: string[],
+  rates?: RoomRates,
+  capacity?: RoomCapacity,
+  maxCapacity?: RoomCapacity,
+  dimensions?: RoomDimensions,
   features: string[],
-  suggestedUses: string[],
+  suggestedUses?: string[],
+  outlinePoints?: number[], 
 }
 
 function constantDayRate(cost: number): RoomDayRates {
@@ -69,12 +70,7 @@ export const rooms: RoomProps[] = [
       'westerham-hall-external-2.jpeg'
     ],
     icon: <MeetingRoomIcon />,
-    includes: [],
-    includedWith: [],
     rates: flatRate(20),
-    capacity: undefined,
-    maxCapacity: undefined,
-    dimensions: undefined,
     features: [
       'Sink with hot and cold water',
       'Direct access to an enclosed terrace',
@@ -84,7 +80,13 @@ export const rooms: RoomProps[] = [
     suggestedUses: [
       "Supervised children's parties",
       "Green Room for the stage"
-    ]
+    ],
+    outlinePoints: [
+      703, 550,
+      802, 587,
+      751, 759,
+      642, 710,
+    ],
   },
   {
     id: 'stage',
@@ -94,19 +96,17 @@ export const rooms: RoomProps[] = [
       'stage-2.jpeg'
     ],
     icon: <TheaterComedyIcon />,
-    includes: [],
     includedWith: ['mainhall'],
-    rates: undefined,
-    capacity: undefined,
-    maxCapacity: undefined,
     dimensions: {width: 10, depth: 5, height: 4},
     features: [
       'Projection Screen'
     ],
-    suggestedUses: [
-      "Plays",
-      "Music"
-    ]
+    outlinePoints: [
+      589, 462,
+      717, 504,
+      642, 688,
+      494, 626,
+    ],
   },
   {
     id: 'mainhall',
@@ -121,7 +121,6 @@ export const rooms: RoomProps[] = [
       'main-hall-2.jpeg'
     ],
     includes: ['kitchen', 'stage'],
-    includedWith: [],
     icon: <FoundationIcon />,
     capacity: {atTables: 125, seated: 180, standing: 250},
     maxCapacity: {atTables: 250, seated: 250, standing: 350},
@@ -140,19 +139,24 @@ export const rooms: RoomProps[] = [
       "Seated Dining",
       "Film Screenings",
       "Large Meetings"
-    ]
+    ],
+    outlinePoints: [
+      405, 372,
+      597, 438,
+      462, 677,
+      260, 588,
+      195, 576,
+      318, 436,
+      311, 417
+    ],
   },
   {
     id: 'kitchen',
     name: "Kitchen",
     rates: undefined,
     photos: ['kitchen.jpeg'],
-    includes: [],
     includedWith: ['mainhall', 'frontroom'],
     icon: <KitchenIcon />,
-    capacity: undefined,
-    maxCapacity: undefined,
-    dimensions: undefined,
     features: [
       "Plenty of work surfaces",
       "2 x 90cm ovens with grill",
@@ -170,7 +174,14 @@ export const rooms: RoomProps[] = [
       "Hire of crockery and glasses by arrangement",
       "Serving hatches to Main Hall and Front Meeting Room",
     ],
-    suggestedUses: [],
+    outlinePoints: [
+      188, 428,
+      289, 472,
+      233, 533,
+      166, 520,
+      177, 506,
+      130, 482,
+    ],
   },
   {
     id: 'frontroom',
@@ -178,11 +189,8 @@ export const rooms: RoomProps[] = [
     rates: flatRate(35),
     photos: ['front-meeting-room.jpeg'],
     includes: ['kitchen'],
-    includedWith: [],
     icon: <MeetingRoomIcon />,
     capacity: {atTables: 40, seated: 60, standing: 100},
-    maxCapacity: undefined,
-    dimensions: undefined,
     features: [
       "12 padded armchairs + additional chairs from the Main Hall",
       "Tables & chairs as required"
@@ -191,21 +199,26 @@ export const rooms: RoomProps[] = [
       "Clubs",
       "Birthday Parties",
       "Small Meetings"
-    ]
+    ],
+    outlinePoints: [
+      157, 350,
+      244, 383,
+      232, 398,
+      220, 393,
+      130, 482,
+      50,  444,
+      50,  405,
+      84,  374,
+      138, 367,
+    ],
   },
   {
     id: 'toilets',
     name: "Toilets & Disabled Facilities",
     rates: undefined,
     photos: [],
-    includes: [],
-    includedWith: [],
     icon: <AccessibilityIcon />,
-    capacity: undefined,
-    maxCapacity: undefined,
-    dimensions: undefined,
     features: [],
-    suggestedUses: []
   },
   {
     id: 'exterior',
@@ -216,13 +229,7 @@ export const rooms: RoomProps[] = [
       'westerham-hall-external-2.jpeg',
       'westerham-hall-parking.jpeg'
     ],
-    includes: [],
-    includedWith: [],
     icon: <DirectionsCarIcon />,
-    capacity: undefined,
-    maxCapacity: undefined,
-    dimensions: undefined,
     features: [],
-    suggestedUses: []
   }
 ];

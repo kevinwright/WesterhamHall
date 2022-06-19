@@ -7,7 +7,6 @@ import { rooms, RoomProps } from "../rooms";
 import { useParams, useNavigate } from "react-router-dom";
 import Konva from "konva";
 import AutoResponsive from "autoresponsive-react"
-import useDimensions from "react-cool-dimensions";
 import RoomSummary from "../panels/roomsummary";
 
 
@@ -24,7 +23,6 @@ function Facilities(props: FacilitiesProps): ReactElement {
   const { selectedroomid } = useParams<keyof FacilitiesParams>() as FacilitiesParams;
   const selectedroom = rooms.find((r) => r.id == selectedroomid)!
 
-  const autoResponsiveRef = useRef<AutoResponsive | null>(null);
   const stageRef = useRef<Konva.Stage | null>(null);
 
 
@@ -88,6 +86,7 @@ function Facilities(props: FacilitiesProps): ReactElement {
       </Grid>
       <Grid item xs={12} md={6} lg={6}>
         <Roomplan
+          selectedRoom={selectedroom}
           stageRef={stageRef}
           onRoomSelected={onRoomSelected}
         />

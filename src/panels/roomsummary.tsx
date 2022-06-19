@@ -34,7 +34,7 @@ function RoomSummary(props: RoomSummaryProps): ReactElement {
         	: <></>
 				}
         {
-					room.features.length ?
+					room.features ?
 						<>
 							<h3>Features</h3>
 							<ul>
@@ -44,7 +44,7 @@ function RoomSummary(props: RoomSummaryProps): ReactElement {
         	: <></>
 				}
         {
-					room.suggestedUses.length ?
+					room.suggestedUses ?
 						<>
 							<h3>Suggested Uses</h3>
 							<ul>
